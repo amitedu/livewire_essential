@@ -12,21 +12,28 @@ class ContactFrom extends Component
     public $phone;
     public $message;
 
-//    protected $rules = [
-//        'name' => 'required',
-//        'email' => 'required',
-//        'phone' => 'required',
-//        'message' => 'required'
-//    ];
+    protected $rules = [
+        'name' => [
+            'required',
+            'min:5'
+        ],
+        'email' => ['required'],
+        'phone' => ['required'],
+        'message' => [
+            'required',
+            'min:5'
+        ]
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
 
     public function submitForm(): void
     {
-        $contact['name'] = $this->name;
-        $contact['email'] = $this->email;
-        $contact['phone'] = $this->phone;
-        $contact['message'] = $this->message;
-
-//        $contact = $this->validate();
+        $contact = $this->validate();
 
         Contact::create($contact);
 
@@ -40,6 +47,7 @@ class ContactFrom extends Component
     {
         session()->flash('contact_success', false);
     }
+
 
     public function render()
     {

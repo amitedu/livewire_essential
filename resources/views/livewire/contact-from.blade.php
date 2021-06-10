@@ -35,7 +35,7 @@
                     </label>
 
                     <input
-                        wire:model.defer="name"
+                        wire:model.lazy="name"
                         class="border border-gray-400 p-2 w-full rounded-md @error('name') border-red-500 @enderror"
                         type="text"
                         name="name"
@@ -58,7 +58,7 @@
                     </label>
 
                     <input
-                        wire:model.defer="email"
+                        wire:model.lazy="email"
                         class="border border-gray-400 p-2 w-full rounded-md @error('name') border-red-500 @enderror"
                         type="email"
                         name="email"
@@ -81,7 +81,7 @@
                     </label>
 
                     <input
-                        wire:model.defer="phone"
+                        wire:model.lazy="phone"
                         class="border border-gray-400 p-2 w-full rounded-md @error('name') border-red-500 @enderror"
                         type="text"
                         name="phone"
@@ -104,7 +104,7 @@
                     </label>
 
                     <textarea
-                        wire:model.defer="message"
+                        wire:model.lazy="message"
                         class="border border-gray-400 p-2 w-full rounded-md @error('name') border-red-500 @enderror"
                         name="message"
                         id="message"
@@ -124,9 +124,14 @@
                         class="bg-gray-400 text-white rounded py-2 px-4 hover:bg-gray-500"
                     >Cancel</a>
                     <button
-                        class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
+                        class="inline-flex items-center justify-center bg-blue-500 text-white rounded py-2 px-4 hover:bg-blue-600 disabled:bg-gray-200"
                         type="submit"
                     >
+
+                        <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
                         Submit
                     </button>
                 </div>
