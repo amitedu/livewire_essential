@@ -1,5 +1,5 @@
 @extends('layout.main-layout')
 
 @section('content')
-    <livewire:contact-from />
+    <livewire:contact-form />
 @endsection

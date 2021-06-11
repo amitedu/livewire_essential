@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Contact;
 use Livewire\Component;
 
-class ContactFrom extends Component
+class ContactForm extends Component
 {
     public $name;
     public $email;
@@ -15,13 +15,16 @@ class ContactFrom extends Component
     protected $rules = [
         'name' => [
             'required',
-            'min:5'
+            'min:5',
         ],
-        'email' => ['required'],
+        'email' => [
+            'required',
+            'email',
+        ],
         'phone' => ['required'],
         'message' => [
             'required',
-            'min:5'
+            'min:5',
         ]
     ];
 
@@ -51,6 +54,6 @@ class ContactFrom extends Component
 
     public function render()
     {
-        return view('livewire.contact-from');
+        return view('livewire.contact-form');
     }
 }

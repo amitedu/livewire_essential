@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Livewire\ContactFrom as ContactFromAlias;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contact', fn() => view('contact-from'));
+Route::get('/contact', fn() => view('contact-form'));
+
+Route::get('/search', fn() => view('search-dropdown'));

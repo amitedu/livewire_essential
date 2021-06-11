@@ -6,6 +6,9 @@
 
         <title>Laravel</title>
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.0-canary.13/tailwind.min.css"
+              crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
