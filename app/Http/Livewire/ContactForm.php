@@ -38,11 +38,21 @@ class ContactForm extends Component
     {
         $contact = $this->validate();
 
-        Contact::create($contact);
+        try {
+            Contact::create($contact);
 
-        $this->reset();
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'success',
+                'message' => "Contact created successfully!!"
+            ]);
 
-        session()->flash('contact_success', 'Contact saved successfully!');
+            $this->reset();
+        } catch (\Exception $e) {
+            $this->dispatchBrowserEvent('alert', [
+                'type' => 'error',
+                'message' => "Something goes wrong while creating category!!"
+            ]);
+        }
     }
 
 
