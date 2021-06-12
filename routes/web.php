@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::get('/contact', fn() => view('contact-form'));
 
 Route::get('/search', fn() => view('search-dropdown'));
+
+Route::get('/table', fn() => view('data-table'));
