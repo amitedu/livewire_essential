@@ -33,6 +33,7 @@ class DataTable extends Component
     }
 
 
+    /** @noinspection PhpUndefinedMethodInspection */
     public function render()
     {
         return view('livewire.data-table', [
