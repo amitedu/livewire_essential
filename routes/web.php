@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,7 @@ Route::get('/contact', fn() => view('contact-form'));
 Route::get('/search', fn() => view('search-dropdown'));
 
 Route::get('/table', fn() => view('data-table'));
+
+Route::get('/posts', [PostController::class, 'index']);
+
+Route::get('/post/{id}', [PostController::class, 'show']);
