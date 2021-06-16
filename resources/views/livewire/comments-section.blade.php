@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="storeComment" action="" method="post">
+    <form wire:submit.prevent="storeComment" action="#" method="post">
         @csrf
 
         <div class="mb-6 mt-12">
@@ -10,7 +10,7 @@
 
             <textarea
                 wire:model.defer="comment"
-                class="border border-gray-400 p-2 w-full rounded-md @error('comment') border-red-500 @enderror"
+                class="border border-gray-400 p-2 w-full rounded-md focus:outline-none @error('comment') border-red-500 @enderror"
                 name="comment"
                 id="comment"
                 rows="3"
@@ -29,4 +29,9 @@
             Submit
         </button>
     </form>
+
+    <!-- All the comments -->
+    @foreach ($comments as $comment)
+        <div class="py-2 px-4 border rounded shadow mt-4">{{ $comment->content }}</div>
+    @endforeach
 </div>

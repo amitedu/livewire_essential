@@ -26,4 +26,4 @@ Route::get('/table', fn() => view('data-table'));
 
 Route::get('/posts', [PostController::class, 'index']);
 
-Route::get('/post/{id}', [PostController::class, 'show']);
+Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
