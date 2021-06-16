@@ -12,5 +12,9 @@
 
             <livewire:comments-section :post="$post" />
         </div>
+
+        <div class="py-2 px-4 border rounded shadow mt-4">
+            <livewire:poll-example />
+        </div>
     </div>
 @endsection
