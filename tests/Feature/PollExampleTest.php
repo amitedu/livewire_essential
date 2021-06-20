@@ -48,4 +48,9 @@ class PollExampleTest extends TestCase
             'content' => 'my first post',
         ]);
     }
+
+    public function test()
+    {
+        
+    }
 }

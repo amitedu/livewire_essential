@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Livewire\ContactEdit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/posts/create', fn() => view('post-form'));
+
 Route::get('/contact', fn() => view('contact-form'));
+Route::get('/contact/{contact}/edit', ContactEdit::class);
 
 Route::get('/search', fn() => view('search-dropdown'));
 

@@ -7,9 +7,9 @@
             <!-- Alert -->
             @if (session('contact_success'))
                 <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500">
-    {{--                <span class="text-xl inline-block mr-5 align-middle">--}}
-    {{--                    <ion-icon name="checkmark-outline"></ion-icon>--}}
-    {{--                </span>--}}
+                    {{--                <span class="text-xl inline-block mr-5 align-middle">--}}
+                    {{--                    <ion-icon name="checkmark-outline"></ion-icon>--}}
+                    {{--                </span>--}}
                     <span class="inline-block align-middle mr-8">
                         <b class="capitalize">Contact</b> successfully saved!
                     </span>
@@ -22,7 +22,7 @@
                 </div>
             @endif
 
-            <form wire:submit.prevent="contactUpdate" action="" method="post">
+            <form wire:submit.prevent="updateContact" action="" method="post">
             @csrf
 
             <!-- Name Form Input -->
@@ -125,7 +125,8 @@
                         Photo:
                     </label>
 
-                    <input class="w-full p-2 rounded-sm border border-gray-400 @error('name') border-red-500 @enderror"
+                    <input wire:model.lazy="photo"
+                        class="w-full p-2 rounded-sm border border-gray-400 @error('photo') border-red-500 @enderror"
                            type="file"
                            name="photo"
                            id="photo"
@@ -134,11 +135,17 @@
                     @error('photo')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
+
+                    <div class="mt-4">
+                        @if($contact->photo)
+                            <img src="{{ Storage::url($contact->photo) }}" alt="cover image" width="128" height="128">
+                        @endif
+                    </div>
                 </div>
 
                 <div class="flex justify-between">
                     <a
-                        href="#"
+                        href="/table"
                         class="bg-gray-400 text-white rounded py-2 px-4 hover:bg-gray-500"
                     >Cancel</a>
                     <button
@@ -159,3 +166,4 @@
     </div>
 
 </div>
+

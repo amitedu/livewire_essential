@@ -4,6 +4,40 @@
         <div class="flex justify-between">
             <div
                 class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12">
+                @if(session()->has('success'))
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Contact Updated successfully',
+                            {{--html: '<b>Deleted </b>, <a class="text-white bg-green-500 p-1 rounded" href="http://127.0.0.1:8000/contact/{{session()->get('success')}}/edit">Undo</a>',--}}
+                            toast: true,
+                            position: 'top-right',
+                            showConfirmButton: false,
+                            showCloseButton: true,
+                            timer: 2500,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                    </script>
+                @endif
+                @php
+                    session()->forget('success')
+                @endphp
+
+                @if(session()->has('error'))
+                    <script>
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: '{{session()->get('error')}}',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                    </script>
+                @endif
                 <div class="flex justify-between">
                     <div class="inline-flex border rounded w-7/12 px-2 lg:px-6 h-12 bg-transparent">
                         <div class="flex flex-wrap items-stretch w-full h-full mb-6 relative">
@@ -91,10 +125,13 @@
                         </div>
                     </th>
                     <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                        Phone
+                        Image
                     </th>
                     <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
                         Status
+                    </th>
+                    <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
+                        Action
                     </th>
                 </tr>
                 </thead>
@@ -112,7 +149,7 @@
                             <div class="text-sm leading-5 text-blue-900">{{ $contact->name }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">{{ $contact->email }}</td>
-                        <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">{{ $contact->phone }}</td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">{{ $contact->photo }}</td>
                         <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
                                             <span
                                                 class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
@@ -121,6 +158,18 @@
                                             <span
                                                 class="relative text-xs">{{ $contact->active ? 'active' : 'not active' }}</span>
                                         </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
+                            <a class="text-blue-500"
+                                href="/contact/{{ $contact->id }}/edit"
+                            >
+                                Edit
+                            </a> |
+                            <a class="text-red-400"
+                                href="/contact/{{ $contact->id }}/delete"
+                            >
+                                Delete
+                            </a>
                         </td>
                     </tr>
                 @empty
